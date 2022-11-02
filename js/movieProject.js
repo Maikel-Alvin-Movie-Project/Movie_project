@@ -12,7 +12,7 @@ function displayMovies(data){
         let mainContainer = document.getElementById("movie");
         for (let i = 0; i < data.length; i++){
                 let div = document.createElement("div");
-                div.innerHTML = 'Title: ' + data[i].title + ' Rating: ' + data[i].rating;
+                div.innerHTML = 'Title: ' + data[i].title + '<br>Rating: ' + data[i].rating;
                 mainContainer.appendChild(div);
         }
 }
