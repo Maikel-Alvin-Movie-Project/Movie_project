@@ -14,9 +14,6 @@ function displayMovies(data){
 
                 let html = '';
                 html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + "</div>";
-
-                // let div = document.createElement("div");
-                // div.innerHTML = 'Title: ' + data[i].title + '<br>Rating: ' + data[i].rating;
                 $("#movie").append(html);
         }
 }
