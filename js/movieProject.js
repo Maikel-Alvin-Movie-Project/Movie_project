@@ -1,7 +1,5 @@
 //https://silk-admitted-crow.glitch.me/movies
 
-let movieTitle;
-
 fetch('https://silk-admitted-crow.glitch.me/movies')
     .then((response) => response.json())
     .then( data => {
