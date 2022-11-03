@@ -25,7 +25,7 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div><button class="rate-button ms-1" id=${data[i].id} type=\"button\">rate</button><br><br>`;
+            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div><button class="edit-button ms-1" id=${data[i].id} type=\"button\">Edit Title</button><br><br>`;
 
             $("#movie").append(html);
         }
@@ -38,11 +38,11 @@ function displayMovies(data){
         });
     }
 
-    let rateBtn = document.querySelectorAll('.rate-button');
+    let rateBtn = document.querySelectorAll('.edit-button');
     for (i of rateBtn) {
         i.addEventListener('click', function() {
             console.log(this.id);
-            // *********************** Create function for updating rating ************************
+            // *********************** Create function for editing title  ************************
         });
     }
 }
@@ -60,7 +60,7 @@ function deleteMovie(x) {
 }
 
 
-//updateRating function
+//editTitle function
 
 
 
