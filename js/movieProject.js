@@ -38,8 +38,8 @@ function displayMovies(data){
         });
     }
 
-    let rateBtn = document.querySelectorAll('.edit-button');
-    for (i of rateBtn) {
+    let editBtn = document.querySelectorAll('.edit-button');
+    for (i of editBtn) {
         i.addEventListener('click', function() {
             console.log(this.id);
             // *********************** Create function for editing title  ************************
