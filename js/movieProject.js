@@ -11,12 +11,25 @@ function getMovies () {
 
 getMovies();
 
-$("#form").submit(function(e) {
+
+let z = document.getElementById('submitForm')
+console.log(z);
+z.addEventListener('click', function (e){
     e.preventDefault();
+    console.log(e);
+    let movieR = document.querySelector('#movieRating').value
+    let movieT = document.querySelector('#movieTitle').value
+    postMovie(movieT, movieR)
+    setTimeout(function (){
+        getMovies()
+    }, 2000)
+    console.log(e);
+
 });
 
 function displayMovies(data){
         let mainContainer = document.getElementById("movie");
+        $("#movie").empty()
         for (let i = 0; i < data.length; i++){
 
             let html = '';
@@ -29,7 +42,13 @@ function displayMovies(data){
     for (i of btns) {
         i.addEventListener('click', function() {
             console.log(this.id);
+            // if (this.id === 'submitForm'){
+            //
+            // }else {
+            //     deleteMovie(this.id)
+            // }
             deleteMovie(this.id)
+
         });
     }
 }
@@ -39,11 +58,12 @@ function displayMovies(data){
 // })
 
 function formSubmit (formTitle, formRating){
-    postMovie(formTitle, formRating);
+    // postMovie(formTitle, formRating);
 }
 // Post Method
 function postMovie(title, rating) {
-fetch('https://silk-admitted-crow.glitch.me/movies/', {
+    // console.log(t);
+    fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
         title,
@@ -56,7 +76,7 @@ fetch('https://silk-admitted-crow.glitch.me/movies/', {
     .then((response) => response.json())
     .then((json) => {
         console.log(json)
-        $('#movies').remove()
+        // $('#movies').remove()
     })
 }
 
