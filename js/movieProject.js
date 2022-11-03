@@ -1,5 +1,13 @@
 //https://silk-admitted-crow.glitch.me/movies
 
+
+//load Screen Start
+
+
+
+
+//load screen End
+
 function getMovies () {
     fetch('https://silk-admitted-crow.glitch.me/movies')
         .then((response) => response.json())
