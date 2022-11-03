@@ -13,11 +13,10 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
                 let html = '';
-                html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + "</div>";
+                html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + "</div><button type=\"button\" onclick='deleteMovie(data[i].id)'>Click Me!</button><br><br>";
                 $("#movie").append(html);
         }
 }
-
 
 
 // Post Method
@@ -26,8 +25,7 @@ fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
         title: 'LOTR',
-        body: 'Movie # 4',
-        userId: 1,
+        rating: '',
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -39,9 +37,13 @@ fetch('https://silk-admitted-crow.glitch.me/movies/', {
 
 
 // Delete Method
-// fetch('https://silk-admitted-crow.glitch.me/movies', {
-//     method: 'DELETE',
-// }).then(res => console.log(res.status))
+function deleteMovie() {
+    console.log();
+fetch(`https://silk-admitted-crow.glitch.me/movies/`, {
+    method: 'DELETE',
+}).then(res => console.log(res.status))
+
+}
 
 
 
