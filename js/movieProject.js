@@ -3,7 +3,7 @@
 
 //load Screen Start
 $(window).on("load",function(){
-    $(".loader-wrapper").fadeOut("slow");
+    $(".loader-wrapper").fadeOut(2000);
 });
 
 
