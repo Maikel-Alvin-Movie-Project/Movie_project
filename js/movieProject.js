@@ -9,25 +9,23 @@ function getMovies () {
         });
 }
 
-getMovies()
+getMovies();
 
 $("#form").submit(function(e) {
     e.preventDefault();
 });
 
-
 function displayMovies(data){
         let mainContainer = document.getElementById("movie");
         for (let i = 0; i < data.length; i++){
 
-                let html = '';
-                html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button id=${data[i].id} type=\"button\">Click Me!</button><br><br>`;
+            let html = '';
+            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button id=${data[i].id} type=\"button\">Click Me!</button><br><br>`;
 
-                $("#movie").append(html);
-
+            $("#movie").append(html);
         }
-    let btns = document.querySelectorAll('button');
 
+    let btns = document.querySelectorAll('button');
     for (i of btns) {
         i.addEventListener('click', function() {
             console.log(this.id);
@@ -40,14 +38,16 @@ function displayMovies(data){
 //     console.log(e)
 // })
 
-
+function formSubmit (formTitle, formRating){
+    postMovie(formTitle, formRating);
+}
 // Post Method
 function postMovie(title, rating) {
 fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
         title,
-        rating
+        rating,
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -69,18 +69,8 @@ fetch(`https://silk-admitted-crow.glitch.me/movies/` + x, {
 }).then(res => {
     console.log(res.status)
     getMovies()
-
 })
-
 }
-
-function formSubmit (formTitle, formRating){
-    console.log(formTitle);
-    console.log(formRating);
-    postMovie(formTitle, formRating)
-}
-
-
 
 
 
