@@ -1,11 +1,19 @@
 //https://silk-admitted-crow.glitch.me/movies
 
-fetch('https://silk-admitted-crow.glitch.me/movies')
-    .then((response) => response.json())
-    .then( data => {
-        console.log(data);
-        displayMovies(data);
-    });
+function getMovies () {
+    fetch('https://silk-admitted-crow.glitch.me/movies')
+        .then((response) => response.json())
+        .then(data => {
+            // console.log(data);
+            displayMovies(data);
+        });
+}
+
+getMovies()
+
+$("#form").submit(function(e) {
+    e.preventDefault();
+});
 
 
 function displayMovies(data){
@@ -13,37 +21,65 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
                 let html = '';
-                html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + "</div><button type=\"button\" onclick='deleteMovie(data[i].id)'>Click Me!</button><br><br>";
+                html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button id=${data[i].id} type=\"button\">Click Me!</button><br><br>`;
+
                 $("#movie").append(html);
+
         }
+    let btns = document.querySelectorAll('button');
+
+    for (i of btns) {
+        i.addEventListener('click', function() {
+            console.log(this.id);
+            deleteMovie(this.id)
+        });
+    }
 }
+
+// $('button').on('click', function (e) {
+//     console.log(e)
+// })
 
 
 // Post Method
-function postMovie() {
+function postMovie(title, rating) {
 fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
-        title: 'LOTR',
-        rating: '',
+        title,
+        rating
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
     },
 })
     .then((response) => response.json())
-    .then((json) => console.log(json));
+    .then((json) => {
+        console.log(json)
+        $('#movies').remove()
+    })
 }
 
 
 // Delete Method
-function deleteMovie() {
-    console.log();
-fetch(`https://silk-admitted-crow.glitch.me/movies/`, {
+function deleteMovie(x) {
+    console.log(x);
+fetch(`https://silk-admitted-crow.glitch.me/movies/` + x, {
     method: 'DELETE',
-}).then(res => console.log(res.status))
+}).then(res => {
+    console.log(res.status)
+    getMovies()
+
+})
 
 }
+
+function formSubmit (formTitle, formRating){
+    console.log(formTitle);
+    console.log(formRating);
+    postMovie(formTitle, formRating)
+}
+
 
 
 
