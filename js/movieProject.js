@@ -2,16 +2,9 @@
 
 
 //load Screen Start
-window.addEventListener("load", () => {
-    const loader = document.querySelector(".loader");
-
-    loader.classList.add("loader-hidden");
-
-    loader.addEventListener("transitionend", () => {
-        document.body.removeChild("loader");
-    })
-})
-
+$(window).on("load",function(){
+    $(".loader-wrapper").fadeOut("slow");
+});
 
 
 //load screen End
@@ -38,7 +31,7 @@ z.addEventListener('click', function (e){
     postMovie(movieT, movieR)
     setTimeout(function (){
         getMovies()
-    }, 2000)
+    }, 1000)
     console.log(e);
 
 });
@@ -49,7 +42,7 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button id=${data[i].id} type=\"button\">Click Me!</button><br><br>`;
+            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button id=${data[i].id} type=\"button\">Delete</button><br><br>`;
 
             $("#movie").append(html);
         }
