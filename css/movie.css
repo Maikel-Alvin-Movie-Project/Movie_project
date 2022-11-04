@@ -69,17 +69,19 @@ body {
 /*}*/
 
 .addMovieTitle {
-    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     border-bottom: 2px solid red;
 }
 
 .selectMovieTitle {
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
     margin-top: 1em;
     border-bottom: 2px solid red;
 }
 
 .movieListTitle {
-    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     border-bottom: 2px solid red;
 }
