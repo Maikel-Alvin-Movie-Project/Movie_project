@@ -19,81 +19,126 @@
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
 <!--load screen end-->
+
+
 <div class="container">
 
+    <!--NavBar-->
+    <nav class="navbar navbar-expand-lg rounded mb-5" style="background-color: lightgrey">
+        <a class="navbar-brand ms-3" href="#">Movie App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+<!--        <div class="collapse navbar-collapse" id="navbarNavDropdown">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item"><button class="btn nav-link rounded px-lg-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">-->
+<!--                        Edit Movie List</button></li>-->
+<!--            </ul>-->
+<!--        </div>-->
+    </nav>
 
-    <!--Add Movie form -->
-    <div class=" row col-4">
-    <h3>Add Movie</h3>
-    <form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
-        <div class="mb-3">
-            <label class="form-label">Movie Title</label>
-            <input type="text" class="form-control" id="movieTitle" name="formTitle">
-            <label class="form-label">Rating</label>
-            <input type="text" class="form-control" id="movieRating" name="formRating">
-        </div>
-        <input type="button" class="btn btn-primary" id="submitForm" value="Submit"></input>
-    </form>
-    </div>
-    <br>
-    <div class=" row col-4">
-        <h3>Select Movie to Edit</h3>
-        <form>
+    <div class="row">
+        <div class="column1 col-lg-3">
+            <!--Add Movie form -->
+            <h3 class="addMovieTitle">Add Movie</h3>
+            <form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
+                <div class="mb-3">
+                    <label class="form-label">Movie Title</label>
+                    <input type="text" class="form-control" id="movieTitle" name="formTitle">
+                    <label class="form-label">Rating</label>
+                    <input type="text" class="form-control" id="movieRating" name="formRating">
+                </div>
+                <input type="button" class="btn btn-primary" id="submitForm" value="Submit"></input>
+            </form>
+            <!--Add Movie form ends -->
+<!--            Edit movie -->
+            <h3 class="selectMovieTitle">Edit Movie</h3>
+            <form>
                 <div>
                     <select id="movieEdit" class="form-select">
                         <option>Select Title</option>
                     </select>
                 </div>
-        </form>
+            </form>
+            <!--Edit movie ends-->
+        </div>
+        <div    class=" fillerCol col-lg-1">
+        </div>
+        <div class="column2 col-lg-8">
+            <h3 class="movieListTitle">Movie List</h3>
+            <!--    Sort-->
+            <select id="sortArea" class="rounded mb-2">
+                <option>Click to Sort</option>
+                <option value="title">Sort By: Title</option>
+                <option value="rating">Sort By: Rating</option>
+            </select>
+            <!--    Sort-->
+            <!-- Movie list -->
+            <div id="movie" class="row"></div>
+            <!--Movie list ends-->
+        </div>
     </div>
-    <br>
-    <!--Add Movie form ends -->
+</div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Movie</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form id="formEdit">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Movie</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formEdit">
                 <div class="modal-body">
 
-                        <div class="mb-3">
-                            <label class="form-label d-none">Movie Id</label>
-                            <input type="text" class="form-control d-none" id="movieId" name="formTitle" disabled>
-                            <label class="form-label">Movie Title</label>
-                            <input type="text" class="form-control" id="movieTitleEdit" name="formTitle">
-                            <label class="form-label">Rating</label>
-                            <input type="text" class="form-control" id="movieRatingEdit" name="formRating">
-                        </div>
+                    <div class="mb-3">
+                        <label class="form-label d-none">Movie Id</label>
+                        <input type="text" class="form-control d-none" id="movieId" name="formTitle" disabled>
+                        <label class="form-label">Movie Title</label>
+                        <input type="text" class="form-control" id="movieTitleEdit" name="formTitle">
+                        <label class="form-label">Rating</label>
+                        <input type="text" class="form-control" id="movieRatingEdit" name="formRating">
+                    </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="changes" data-bs-dismiss="modal">Save changes</button>
                 </div>
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 <!--  Modal ends-->
 
-<!--    Sort-->
-<select id="sortArea" class="rounded mb-2">
-    <option>Click to Sort</option>
-    <option value="title">Sort By: Title</option>
-    <option value="rating">Sort By: Rating</option>
-</select>
-<!--    Sort-->
+<!--&lt;!&ndash;Side bar &ndash;&gt;-->
+<!--<div class="offcanvas offcanvas-start bg-dark text-light row" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">-->
+<!--    &lt;!&ndash;            Date and Time &ndash;&gt;-->
+<!--    <div class="offcanvas-header d-flex justify-content-center text-center">-->
+<!--        <div class="date-container">-->
+<!--            <div class="time" id="time">-->
+<!--                12:30 <span id="am-pm">PM</span>-->
+<!--            </div>-->
+<!--            <div class="date" id="date">-->
+<!--                Monday, 24 May-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="offcanvas-body">-->
+<!--        &lt;!&ndash;            Edit movie &ndash;&gt;-->
+<!--        <h3 class="selectMovieTitle">Select Movie to Edit</h3>-->
+<!--        <form>-->
+<!--            <div>-->
+<!--                <select id="movieEdit" class="form-select">-->
+<!--                    <option>Select Title</option>-->
+<!--                </select>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--        &lt;!&ndash;Edit movie ends&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;Sie bar ends&ndash;&gt;-->
 
-    <!-- Movie list -->
-<div id="movie" class="row"></div>
-<!--Movie list ends-->
-
-
-</div>
 <!-- Bootstrap link -->
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -108,3 +153,7 @@
 <script src="js/movieProject.js"></script>
 </body>
 </html>
+
+<!-- To-do:
+- Split page into 2 columns
+-->
