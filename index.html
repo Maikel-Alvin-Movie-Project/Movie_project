@@ -19,25 +19,85 @@
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
 <!--load screen end-->
+<div class="container">
 
-<!-- Movie list -->
-<div id="movie"></div>
+
+    <!--Add Movie form -->
+    <div class=" row col-4">
+    <h3>Add Movie</h3>
+    <form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
+        <div class="mb-3">
+            <label class="form-label">Movie Title</label>
+            <input type="text" class="form-control" id="movieTitle" name="formTitle">
+            <label class="form-label">Rating</label>
+            <input type="text" class="form-control" id="movieRating" name="formRating">
+        </div>
+        <input type="button" class="btn btn-primary" id="submitForm" value="Submit"></input>
+    </form>
+    </div>
+    <br>
+    <div class=" row col-4">
+        <h3>Edit Movie list</h3>
+        <form>
+                <div>
+                    <label for="movieEdit" class="form-label">Edit Title</label>
+                    <select id="movieEdit" class="form-select">
+                        <option>Select Title</option>
+                    </select>
+                </div>
+        </form>
+    </div>
+    <br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="formEdit">
+                <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="form-label">Movie Id</label>
+                            <input type="text" class="form-control" id="movieId" name="formTitle" disabled>
+                            <label class="form-label">Movie Title</label>
+                            <input type="text" class="form-control" id="movieTitleEdit" name="formTitle">
+                            <label class="form-label">Rating</label>
+                            <input type="text" class="form-control" id="movieRatingEdit" name="formRating">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="changes" data-bs-dismiss="modal">Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--Add Movie form ends -->
+
+
+    <!-- Movie list -->
+
+<div id="movie" class="row"></div>
+
 <!--Movie list ends-->
 
-<!--Add Movie form -->
-<h1>Add Movie</h1>
-<form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
-    <div class="mb-3">
-        <label class="form-label">Movie Title</label>
-        <input type="text" class="form-control" id="movieTitle" name="formTitle">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Rating</label>
-        <input type="text" class="form-control" id="movieRating" name="formRating">
-    </div>
-    <input type="button" class="btn btn-primary" id="submitForm" value="Submit"></input>
-</form>
-<!--Add Movie form ends -->
+
+</div>
+<!--modal btn start-->
+
+
+<!--modal btn end-->
+<!--modal start-->
+
+
+<!--modal end-->
+
 
 <!-- Bootstrap link -->
 <!-- JavaScript Bundle with Popper -->

@@ -6,16 +6,20 @@ $(window).on("load",function(){
 });
 //load screen End
 
-
+let movies = []
 //Fetch movies function
 function getMovies () {
+    movies =[]
     fetch('https://silk-admitted-crow.glitch.me/movies')
         .then((response) => response.json())
         .then(data => {
-            // console.log(data);
+            // console.log();
+            movies = data
             displayMovies(data);
+            editMovieList(data)
         });
-} getMovies();
+}
+getMovies();
 
 
 // Display Movies function + Button functionality
@@ -25,7 +29,7 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id}>` + "<strong>Title:</strong> " + data[i].title + " <br><strong>Rating:</strong> " + data[i].rating + `</div><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div><button class="edit-button ms-1" id=${data[i].id} type=\"button\">Edit Title</button><br><br>`;
+            html += `<div id=${data[i].id} class="col card-header card text-nowrap"> <strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} <button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
 
             $("#movie").append(html);
         }
@@ -38,14 +42,17 @@ function displayMovies(data){
         });
     }
 
-    let editBtn = document.querySelectorAll('.edit-button');
-    for (i of editBtn) {
-        i.addEventListener('click', function() {
-            console.log(this.id);
-            // *********************** Create function for editing title  ************************
-        });
-    }
+
+    // let editBtn = document.querySelectorAll('.edit-button');
+    // for (i of editBtn) {
+    //     i.addEventListener('click', function() {
+    //         console.log(this.id);
+    //         // *********************** Create function for editing title  ************************
+    //     });
+    // }
 }
+
+
 
 
 // deleteMovie function
@@ -59,10 +66,18 @@ function deleteMovie(x) {
     })
 }
 
-
 //editTitle function
 
-
+function editMovieList(data){
+    let select = document.getElementById("movieEdit")
+    $("#movieEdit").empty()
+    for (let i = 0; i < data.length; i++){
+        let currentOption = document.createElement("option")
+        currentOption.textContent = data[i].title
+        currentOption.value = data[i].id
+        select.appendChild(currentOption)
+    }
+}
 
 
 //Submit Add Movie Form
@@ -103,22 +118,67 @@ function postMovie(title, rating) {
 
 
 
-//Patch Method
-// fetch('https://silk-admitted-crow.glitch.me/movies', {
-//     method: 'PATCH',
-//     body: JSON.stringify({
-//         title: 'foo',
-//         rating: 5
+
+//modal
+const mySelect = document.getElementById('movieEdit')
+mySelect.addEventListener('change', (e) =>{
+    const id = $('#movieEdit').find(":selected").val();
+    const selectedMovie = movies.find(movie => movie.id == id)
+    const sameId = document.getElementById('movieId')
+    const myNewTitle = document.getElementById('movieTitleEdit')
+    const myNewRating = document.getElementById('movieRatingEdit')
+    sameId.value = (selectedMovie.id)
+    myNewTitle.value = (selectedMovie.title)
+    myNewRating.value = (selectedMovie.rating)
+    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        keyboard: false
+    })
+    myModal.show()
+})
+
+// const myInput = document.getElementById('myInput')
 //
-//     }),
-//     headers: {
-//         'Content-type': 'application/json; charset=UTF-8',
-//     },
+// myModal.addEventListener('shown.bs.modal', () => {
+//     myInput.focus()
 // })
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+
+//Patch Method
+let patch = document.getElementById('changes')
+console.log(patch);
+patch.addEventListener('click', function (e){
+    e.preventDefault();
+    console.log(e);
+    let movieEditRating = document.querySelector('#movieRatingEdit').value
+    let movieEditTitle = document.querySelector('#movieTitleEdit').value
+    let movieEditId = document.querySelector('#movieId').value
+    moviePatch(movieEditId, movieEditTitle, movieEditRating)
+    setTimeout(function (){
+        getMovies()
+    }, 1000)
+    console.log(e);
+    // let theModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+    //     keyboard: false
+    // })
+    // theModal.hide()
+});
+function moviePatch(id, title, rating) {
 
 
+    fetch('https://silk-admitted-crow.glitch.me/movies/' + id, {
+        method: 'PATCH',
+        body: JSON.stringify({
+            title,
+            rating,
+
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+
+}
 
 
 //PUT Method
