@@ -1,29 +1,29 @@
-//Datetime
-const timeElement = document.getElementById('time');
-const dateElement = document.getElementById('date');
-
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
-//Interval function Updates every 1 min
-setInterval(() => {
-    // Declarations
-    const time = new Date();
-    const month = time.getMonth();
-    const date = time.getDate();
-    const day = time.getDay();
-    const hour = time.getHours();
-    const hoursIn12HrFormat = hour >= 13 ? hour % 12: hour
-    const minutes = time.getMinutes();
-    const ampm = hour >=12 ? 'PM' : 'AM'
-
-    //Time Element
-    timeElement.innerHTML = hoursIn12HrFormat + ":" + (minutes>=9 ? minutes:"0" + minutes) +  " " + ampm
-    //Date Element
-    dateElement.innerHTML = `${days[day]}, ${date} ${months[month]}`
-}, 1000)
-
-//Datetime ends
+// //Datetime
+// const timeElement = document.getElementById('time');
+// const dateElement = document.getElementById('date');
+//
+// const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+// const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+//
+// //Interval function Updates every 1 min
+// setInterval(() => {
+//     // Declarations
+//     const time = new Date();
+//     const month = time.getMonth();
+//     const date = time.getDate();
+//     const day = time.getDay();
+//     const hour = time.getHours();
+//     const hoursIn12HrFormat = hour >= 13 ? hour % 12: hour
+//     const minutes = time.getMinutes();
+//     const ampm = hour >=12 ? 'PM' : 'AM'
+//
+//     //Time Element
+//     timeElement.innerHTML = hoursIn12HrFormat + ":" + (minutes>=9 ? minutes:"0" + minutes) +  " " + ampm
+//     //Date Element
+//     dateElement.innerHTML = `${days[day]}, ${date} ${months[month]}`
+// }, 1000)
+//
+// //Datetime ends
 
 //https://silk-admitted-crow.glitch.me/movies
 
@@ -73,7 +73,12 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id} class="htmlCard col-lg-4 card" style="height: 10em"> <p class="mb-4 "><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} </p><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
+            html += `<div class="card htmlCard col-lg-4 p-0 my-2" id=${data[i].id}>
+  <img src="css/leo.png" class="card-img-top rounded" alt="" style="height: 250px">
+  <div class="card-body">
+    <p class="card-text"> <p class="mb-4"><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating}</p><button class="dlt-button rounded px-3 py-1" id=${data[i].id} type=\"button\">Delete</button></p>
+  </div>
+</div>`;
 
             $("#movie").append(html);
         }
