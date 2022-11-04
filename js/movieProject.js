@@ -74,7 +74,7 @@ function displayMovies(data){
 
             let html = '';
             html += `<div class="card htmlCard col-lg-4 p-0 my-2" id=${data[i].id}>
-  <img src="css/leo.png" class="card-img-top rounded" alt="" style="height: 250px">
+  <img src="css/leo.png" class="card-img-top rounded" alt="">
   <div class="card-body">
     <p class="card-text"> <p class="mb-4"><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating}</p><button class="dlt-button rounded px-3 py-1" id=${data[i].id} type=\"button\">Delete</button></p>
   </div>
