@@ -26,15 +26,16 @@ getMovies();
 $('#sortArea').on("change", (e) => {
     let value = e.target.value;
     console.log(value);
-    movies.sort((a,b) => {
+    let sorted = movies.sort((a,b) => {
         if (value == "title"){
-            return a.title.localeCompare(b.title)
+            return a.title - b.title
         } else if (value  == "rating"){
-            return a.rating > b.rating ? 1 : -1
+            return a.rating < b.rating ? 1 : -1
         }
     })
-    console.log(movies);
-    // displayMovies();
+    sorted = movies
+    console.log(sorted);
+    displayMovies(sorted);
 })
 
 
@@ -45,7 +46,7 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id} class="htmlCard col card"> <p class="mb-4 "><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} </p><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
+            html += `<div id=${data[i].id} class="htmlCard col card" style="height: 10em"> <p class="mb-4 "><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} </p><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
 
             $("#movie").append(html);
         }
