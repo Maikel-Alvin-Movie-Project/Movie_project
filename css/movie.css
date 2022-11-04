@@ -58,7 +58,6 @@ body {
 .htmlCard{
     display: flex;
     justify-content: center;
-    margin-left: 3px;
 }
 
 .column1{

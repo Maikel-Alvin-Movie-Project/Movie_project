@@ -73,7 +73,7 @@ function displayMovies(data){
         for (let i = 0; i < data.length; i++){
 
             let html = '';
-            html += `<div id=${data[i].id} class="htmlCard col card" style="height: 10em"> <p class="mb-4 "><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} </p><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
+            html += `<div id=${data[i].id} class="htmlCard col-lg-4 card" style="height: 10em"> <p class="mb-4 "><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating} </p><button class="dlt-button" id=${data[i].id} type=\"button\">Delete</button></div>`;
 
             $("#movie").append(html);
         }
