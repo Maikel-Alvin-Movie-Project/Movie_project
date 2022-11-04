@@ -16,10 +16,26 @@ function getMovies () {
             // console.log();
             movies = data
             displayMovies(data);
-            editMovieList(data)
+            editMovieList(data);
         });
 }
 getMovies();
+
+
+//sortFunction
+$('#sortArea').on("change", (e) => {
+    let value = e.target.value;
+    console.log(value);
+    movies.sort((a,b) => {
+        if (value == "title"){
+            return a.title.localeCompare(b.title)
+        } else if (value  == "rating"){
+            return a.rating > b.rating ? 1 : -1
+        }
+    })
+    console.log(movies);
+    // displayMovies();
+})
 
 
 // Display Movies function + Button functionality
@@ -42,8 +58,6 @@ function displayMovies(data){
         });
     }
 }
-
-
 
 
 // deleteMovie function
@@ -80,7 +94,7 @@ function postMovie(title, rating) {
     method: 'POST',
     body: JSON.stringify({
         title,
-        rating,
+        rating: parseInt(rating)
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -158,6 +172,25 @@ function moviePatch(id, title, rating) {
 }
 
 
+
+function omdbInfo(id, title, rating) {
+    fetch('http://www.omdbapi.com/?apikey=[yourkey]&' + id, {
+        method: 'PUT',
+        body: JSON.stringify({
+            title,
+            rating,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
+}
+
+
+
+
 //PUT Method
 // fetch('https://silk-admitted-crow.glitch.me/movies', {
 //     method: 'PUT',
@@ -172,3 +205,5 @@ function moviePatch(id, title, rating) {
 // })
 //     .then((response) => response.json())
 //     .then((json) => console.log(json));
+
+// Add a dropdown above movie array
