@@ -139,20 +139,15 @@ patch.addEventListener('click', function (e){
         getMovies()
     }, 1000)
     console.log(e);
-    // let theModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-    //     keyboard: false
-    // })
-    // theModal.hide()
 });
+
+
 function moviePatch(id, title, rating) {
-
-
     fetch('https://silk-admitted-crow.glitch.me/movies/' + id, {
         method: 'PATCH',
         body: JSON.stringify({
             title,
             rating,
-
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -160,7 +155,6 @@ function moviePatch(id, title, rating) {
     })
         .then((response) => response.json())
         .then((json) => console.log(json));
-
 }
 
 
