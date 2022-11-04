@@ -41,15 +41,6 @@ function displayMovies(data){
             deleteMovie(this.id)
         });
     }
-
-
-    // let editBtn = document.querySelectorAll('.edit-button');
-    // for (i of editBtn) {
-    //     i.addEventListener('click', function() {
-    //         console.log(this.id);
-    //         // *********************** Create function for editing title  ************************
-    //     });
-    // }
 }
 
 
@@ -65,20 +56,6 @@ function deleteMovie(x) {
         getMovies()
     })
 }
-
-//editTitle function
-
-function editMovieList(data){
-    let select = document.getElementById("movieEdit")
-    $("#movieEdit").empty()
-    for (let i = 0; i < data.length; i++){
-        let currentOption = document.createElement("option")
-        currentOption.textContent = data[i].title
-        currentOption.value = data[i].id
-        select.appendChild(currentOption)
-    }
-}
-
 
 //Submit Add Movie Form
 let z = document.getElementById('submitForm')
@@ -116,7 +93,18 @@ function postMovie(title, rating) {
     })
 }
 
+//editTitle function
 
+function editMovieList(data){
+    let select = document.getElementById("movieEdit")
+    $("#movieEdit").empty()
+    for (let i = 0; i < data.length; i++){
+        let currentOption = document.createElement("option")
+        currentOption.textContent = data[i].title
+        currentOption.value = data[i].id
+        select.appendChild(currentOption)
+    }
+}
 
 
 //modal
@@ -136,11 +124,6 @@ mySelect.addEventListener('change', (e) =>{
     myModal.show()
 })
 
-// const myInput = document.getElementById('myInput')
-//
-// myModal.addEventListener('shown.bs.modal', () => {
-//     myInput.focus()
-// })
 
 //Patch Method
 let patch = document.getElementById('changes')

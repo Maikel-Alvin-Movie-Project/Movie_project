@@ -37,10 +37,9 @@
     </div>
     <br>
     <div class=" row col-4">
-        <h3>Edit Movie list</h3>
+        <h3>Select Movie to Edit</h3>
         <form>
                 <div>
-                    <label for="movieEdit" class="form-label">Edit Title</label>
                     <select id="movieEdit" class="form-select">
                         <option>Select Title</option>
                     </select>
@@ -48,21 +47,22 @@
         </form>
     </div>
     <br>
+    <!--Add Movie form ends -->
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Movie</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form id="formEdit">
                 <div class="modal-body">
 
                         <div class="mb-3">
-                            <label class="form-label">Movie Id</label>
-                            <input type="text" class="form-control" id="movieId" name="formTitle" disabled>
+                            <label class="form-label d-none">Movie Id</label>
+                            <input type="text" class="form-control d-none" id="movieId" name="formTitle" disabled>
                             <label class="form-label">Movie Title</label>
                             <input type="text" class="form-control" id="movieTitleEdit" name="formTitle">
                             <label class="form-label">Rating</label>
@@ -78,27 +78,15 @@
             </div>
         </div>
     </div>
-    <!--Add Movie form ends -->
+<!--  Modal ends-->
 
 
     <!-- Movie list -->
-
 <div id="movie" class="row"></div>
-
 <!--Movie list ends-->
 
 
 </div>
-<!--modal btn start-->
-
-
-<!--modal btn end-->
-<!--modal start-->
-
-
-<!--modal end-->
-
-
 <!-- Bootstrap link -->
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
