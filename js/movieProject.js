@@ -161,7 +161,11 @@ function postMovie(title, rating) {
 
 function editMovieList(data){
     let select = document.getElementById("movieEdit")
-    $("#movieEdit").empty()
+    $("#movieEdit").empty();
+
+    let currentOption = document.createElement("option")
+    currentOption.textContent = "Click to Select:";
+    select.appendChild(currentOption);
     for (let i = 0; i < data.length; i++){
         let currentOption = document.createElement("option")
         currentOption.textContent = data[i].title
