@@ -28,7 +28,7 @@ $('#sortArea').on("change", (e) => {
     console.log(value);
     let sorted = movies.sort((a,b) => {
         if (value == "title"){
-            return a.title - b.title
+            return a.title > b.title ? 1 : -1
         } else if (value  == "rating"){
             return a.rating < b.rating ? 1 : -1
         }
