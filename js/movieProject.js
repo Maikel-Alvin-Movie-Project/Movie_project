@@ -33,20 +33,37 @@ $(window).on("load",function(){
 });
 //load screen End
 
-let movies = []
+let movies = [];
+let allMovies = [];
+
 //Fetch movies function
 function getMovies () {
-    movies =[]
+    movies = []
     fetch('https://silk-admitted-crow.glitch.me/movies')
         .then((response) => response.json())
         .then(data => {
             // console.log();
-            movies = data
+            movies = data;
+            allMovies = [...movies];
             displayMovies(data);
             editMovieList(data);
         });
 }
 getMovies();
+
+//Search function
+$('#searchBox').on("input", (e) => {
+    let searchItem = e.target.value;
+    if (searchItem.length > 0){
+    movies = movies.filter(item =>
+        item.title.toLowerCase().includes(searchItem.toLowerCase()))
+    displayMovies(movies)
+    } else {
+        movies = allMovies;
+        displayMovies(movies);
+    }
+})
+
 
 
 //sortFunction
