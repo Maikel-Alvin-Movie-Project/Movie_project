@@ -76,6 +76,8 @@ $('#sortArea').on("change", (e) => {
             return a.title > b.title ? 1 : -1
         } else if (value  == "rating"){
             return a.rating < b.rating ? 1 : -1
+        } else if (value == "genre"){
+            return a.genre > b.genre ? 1 : -1
         }
     })
     sorted = movies
@@ -171,7 +173,7 @@ function editMovieList(data){
     $("#movieEdit").empty();
 
     let currentOption = document.createElement("option")
-    currentOption.textContent = "Click to Select:";
+    currentOption.textContent = "Click to Select";
     select.appendChild(currentOption);
     for (let i = 0; i < data.length; i++){
         let currentOption = document.createElement("option")
