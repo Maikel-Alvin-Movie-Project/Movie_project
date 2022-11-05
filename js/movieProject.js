@@ -45,7 +45,7 @@ function getMovies () {
             // console.log();
             movies = data;
             allMovies = [...movies];
-            addMoviePoster(data);
+            // addMoviePoster(data);
             displayMovies(data);
             editMovieList(data);
         });
@@ -239,45 +239,32 @@ function moviePatch(id, title, rating, genre) {
 }
 
 
+//start of moviePoster request
 
-function omdbInfo(title) {
-    return new Promise((resolve, reject) => {
-
-
-        fetch('http://www.img.omdbapi.com/?apikey=33246cb9&t=' + title, {
-            method: 'GET',
-            headers: {
-                'Referrer-Policy': 'http://localhost:63342',
-                'Content-type': 'application/json; charset=UTF-8',
-
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => resolve(json));
-    })
-}
-function addMoviePoster (data){
-    for (let i = 0; i <= data.length; i++){
-        data[i].poster = omdbInfo(data[i].title)
-    }
-    console.log(data);
-}
-
-
-
-//PUT Method
-// fetch('https://silk-admitted-crow.glitch.me/movies', {
-//     method: 'PUT',
-//     body: JSON.stringify({
-//         title: 'Movie#?3',
-//         rating: 5
+// function omdbInfo(title) {
+//     return new Promise((resolve, reject) => {
 //
-//     }),
-//     headers: {
-//         'Content-type': 'application/json; charset=UTF-8',
-//     },
-// })
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
+//
+//         fetch('http://www.img.omdbapi.com/?apikey=33246cb9&t=' + title, {
+//             method: 'GET',
+//             headers: {
+//                 'Referrer-Policy': 'http://localhost:63342',
+//                 'Content-type': 'application/json; charset=UTF-8',
+//
+//             },
+//         })
+//             .then((response) => response.json())
+//             .then((json) => resolve(json));
+//     })
+// }
+// function addMoviePoster (data){
+//     for (let i = 0; i <= data.length; i++){
+//         data[i].poster = omdbInfo(data[i].title)
+//     }
+//     console.log(data);
+// }
 
-// Add a dropdown above movie array
+//end of moviePoster request
+
+
+
