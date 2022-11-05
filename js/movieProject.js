@@ -173,7 +173,7 @@ function editMovieList(data){
     $("#movieEdit").empty();
 
     let currentOption = document.createElement("option")
-    currentOption.textContent = "Click to Select";
+    currentOption.textConten = "Click to Select";
     select.appendChild(currentOption);
     for (let i = 0; i < data.length; i++){
         let currentOption = document.createElement("option")
