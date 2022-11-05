@@ -45,6 +45,7 @@ function getMovies () {
             // console.log();
             movies = data;
             allMovies = [...movies];
+            addMoviePoster(data);
             displayMovies(data);
             editMovieList(data);
         });
@@ -93,7 +94,10 @@ function displayMovies(data){
             html += `<div class="card htmlCard col-lg-4 p-0 my-2" id=${data[i].id}>
   <img src="css/leo.png" class="card-img-top rounded" alt="">
   <div class="card-body">
-    <p class="card-text"> <p class="mb-4"><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating}</p><button class="dlt-button rounded px-3 py-1" id=${data[i].id} type=\"button\">Delete</button></p>
+    <p class="card-text"> <p class="mb-4"><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating}`
+
+            html += data[i].genre ? `<br><strong>Genre:</strong>  ${data[i].genre}`:''
+            html += `</p><button class="dlt-button rounded px-3 py-1" id=${data[i].id} type=\"button\">Delete</button></p>
   </div>
 </div>`;
 
@@ -127,9 +131,11 @@ console.log(z);
 z.addEventListener('click', function (e){
     e.preventDefault();
     console.log(e);
-    let movieR = document.querySelector('#movieRating').value
+    const movieR = $('#movieRating').find(":selected").val();
+    // let movieR = document.querySelector('#movieRating').value
     let movieT = document.querySelector('#movieTitle').value
-    postMovie(movieT, movieR)
+    let movieG = document.querySelector('#movieGenre').value
+    postMovie(movieT, movieR, movieG)
     setTimeout(function (){
         getMovies()
     }, 1000)
@@ -138,13 +144,14 @@ z.addEventListener('click', function (e){
 
 
 // Post Method
-function postMovie(title, rating) {
+function postMovie(title, rating, genre) {
     // console.log(t);
     fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
         title,
-        rating: parseInt(rating)
+        rating: parseInt(rating),
+        genre,
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -182,10 +189,14 @@ mySelect.addEventListener('change', (e) =>{
     const selectedMovie = movies.find(movie => movie.id == id)
     const sameId = document.getElementById('movieId')
     const myNewTitle = document.getElementById('movieTitleEdit')
-    const myNewRating = document.getElementById('movieRatingEdit')
+
+    // const myNewRating = document.getElementById('movieRatingEdit')
+    const addGenre = document.getElementById('movieGenreEdit')
     sameId.value = (selectedMovie.id)
     myNewTitle.value = (selectedMovie.title)
-    myNewRating.value = (selectedMovie.rating)
+    // myNewRating.value = (selectedMovie.rating)
+    $('#movieRatingEdit').val(selectedMovie.rating);
+    addGenre.value = (selectedMovie.genre ? selectedMovie.genre:'')
     let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
         keyboard: false
     })
@@ -202,7 +213,8 @@ patch.addEventListener('click', function (e){
     let movieEditRating = document.querySelector('#movieRatingEdit').value
     let movieEditTitle = document.querySelector('#movieTitleEdit').value
     let movieEditId = document.querySelector('#movieId').value
-    moviePatch(movieEditId, movieEditTitle, movieEditRating)
+    let movieGenre = document.querySelector('#movieGenreEdit').value
+    moviePatch(movieEditId, movieEditTitle, movieEditRating, movieGenre)
     setTimeout(function (){
         getMovies()
     }, 1000)
@@ -210,12 +222,13 @@ patch.addEventListener('click', function (e){
 });
 
 
-function moviePatch(id, title, rating) {
+function moviePatch(id, title, rating, genre) {
     fetch('https://silk-admitted-crow.glitch.me/movies/' + id, {
         method: 'PATCH',
         body: JSON.stringify({
             title,
             rating,
+            genre,
         }),
         headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -227,21 +240,28 @@ function moviePatch(id, title, rating) {
 
 
 
-function omdbInfo(id, title, rating) {
-    fetch('http://www.omdbapi.com/?apikey=[yourkey]&' + id, {
-        method: 'PUT',
-        body: JSON.stringify({
-            title,
-            rating,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
-    })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-}
+function omdbInfo(title) {
+    return new Promise((resolve, reject) => {
 
+
+        fetch('http://www.img.omdbapi.com/?apikey=33246cb9&t=' + title, {
+            method: 'GET',
+            headers: {
+                'Referrer-Policy': 'http://localhost:63342',
+                'Content-type': 'application/json; charset=UTF-8',
+
+            },
+        })
+            .then((response) => response.json())
+            .then((json) => resolve(json));
+    })
+}
+function addMoviePoster (data){
+    for (let i = 0; i <= data.length; i++){
+        data[i].poster = omdbInfo(data[i].title)
+    }
+    console.log(data);
+}
 
 
 
