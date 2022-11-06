@@ -41,13 +41,14 @@ function getMovies () {
     movies = []
     fetch('https://silk-admitted-crow.glitch.me/movies')
         .then((response) => response.json())
-        .then(data => {
+        .then(async data => {
             // console.log();
-            movies = data;
+            let updatedMovieData = await addMoviePoster(data);
+            console.log(updatedMovieData);
+            movies = updatedMovieData;
             allMovies = [...movies];
-            // addMoviePoster(data);
-            displayMovies(data);
-            editMovieList(data);
+            displayMovies(updatedMovieData);
+            editMovieList(updatedMovieData);
         });
 }
 getMovies();
@@ -64,8 +65,6 @@ $('#searchBox').on("input", (e) => {
         displayMovies(movies);
     }
 })
-
-
 
 //sortFunction
 $('#sortArea').on("change", (e) => {
@@ -85,16 +84,16 @@ $('#sortArea').on("change", (e) => {
     displayMovies(sorted);
 })
 
-
 // Display Movies function + Button functionality
 function displayMovies(data){
         let mainContainer = document.getElementById("movie");
         $("#movie").empty()
         for (let i = 0; i < data.length; i++){
+            let poster = data[i].poster ? data[i].poster: "css/leo.png"
 
             let html = '';
             html += `<div class="card htmlCard col-lg-4 p-0 my-2" id=${data[i].id}>
-  <img src="css/leo.png" class="card-img-top rounded" alt="">
+  <img src=${poster} class="card-img-top rounded" alt="">
   <div class="card-body">
     <p class="card-text"> <p class="mb-4"><strong>Title:</strong> ${data[i].title} <br><strong>Rating:</strong>  ${data[i].rating}`
 
@@ -114,7 +113,6 @@ function displayMovies(data){
         });
     }
 }
-
 
 // deleteMovie function
 function deleteMovie(x) {
@@ -138,12 +136,13 @@ z.addEventListener('click', function (e){
     let movieT = document.querySelector('#movieTitle').value
     let movieG = document.querySelector('#movieGenre').value
     postMovie(movieT, movieR, movieG)
+    document.querySelector("#form").reset()
     setTimeout(function (){
         getMovies()
     }, 1000)
+
     console.log(e);
 });
-
 
 // Post Method
 function postMovie(title, rating, genre) {
@@ -166,7 +165,27 @@ function postMovie(title, rating, genre) {
     })
 }
 
-//editTitle function
+//modal
+const mySelect = document.getElementById('movieEdit')
+mySelect.addEventListener('change', (e) =>{
+    const id = $('#movieEdit').find(":selected").val();
+    const selectedMovie = movies.find(movie => movie.id == id)
+    const sameId = document.getElementById('movieId')
+    const myNewTitle = document.getElementById('movieTitleEdit')
+    const addGenre = document.getElementById('movieGenreEdit')
+    sameId.value = (selectedMovie.id)
+    myNewTitle.value = (selectedMovie.title)
+    $('#movieRatingEdit').val(selectedMovie.rating);
+    addGenre.value = (selectedMovie.genre ? selectedMovie.genre:'')
+    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+        keyboard: false
+    })
+    myModal.show()
+})
+//end of Modal
+
+// Start Edit & Patch Method
+//Edit function
 
 function editMovieList(data){
     let select = document.getElementById("movieEdit")
@@ -183,30 +202,8 @@ function editMovieList(data){
     }
 }
 
+//Patch Function
 
-//modal
-const mySelect = document.getElementById('movieEdit')
-mySelect.addEventListener('change', (e) =>{
-    const id = $('#movieEdit').find(":selected").val();
-    const selectedMovie = movies.find(movie => movie.id == id)
-    const sameId = document.getElementById('movieId')
-    const myNewTitle = document.getElementById('movieTitleEdit')
-
-    // const myNewRating = document.getElementById('movieRatingEdit')
-    const addGenre = document.getElementById('movieGenreEdit')
-    sameId.value = (selectedMovie.id)
-    myNewTitle.value = (selectedMovie.title)
-    // myNewRating.value = (selectedMovie.rating)
-    $('#movieRatingEdit').val(selectedMovie.rating);
-    addGenre.value = (selectedMovie.genre ? selectedMovie.genre:'')
-    let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-        keyboard: false
-    })
-    myModal.show()
-})
-
-
-//Patch Method
 let patch = document.getElementById('changes')
 console.log(patch);
 patch.addEventListener('click', function (e){
@@ -223,7 +220,6 @@ patch.addEventListener('click', function (e){
     console.log(e);
 });
 
-
 function moviePatch(id, title, rating, genre) {
     fetch('https://silk-admitted-crow.glitch.me/movies/' + id, {
         method: 'PATCH',
@@ -239,32 +235,31 @@ function moviePatch(id, title, rating, genre) {
         .then((response) => response.json())
         .then((json) => console.log(json));
 }
-
+//Patch & edit Movie Method
 
 //start of moviePoster request
 
-// function omdbInfo(title) {
-//     return new Promise((resolve, reject) => {
-//
-//
-//         fetch('http://www.img.omdbapi.com/?apikey=33246cb9&t=' + title, {
-//             method: 'GET',
-//             headers: {
-//                 'Referrer-Policy': 'http://localhost:63342',
-//                 'Content-type': 'application/json; charset=UTF-8',
-//
-//             },
-//         })
-//             .then((response) => response.json())
-//             .then((json) => resolve(json));
-//     })
-// }
-// function addMoviePoster (data){
-//     for (let i = 0; i <= data.length; i++){
-//         data[i].poster = omdbInfo(data[i].title)
-//     }
-//     console.log(data);
-// }
+function omdbInfo(title) {
+    return new Promise((resolve, reject) => {
+
+
+        fetch('https://omdbapi.com/?apikey=33246cb9&t=' + title, {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((json) => resolve(json));
+    })
+}
+async function addMoviePoster(data) {
+    for (let i = 0; i < data.length; i++) {
+        let omdbData = await omdbInfo(data[i].title)
+        if (omdbData && omdbData.Response.toLowerCase() === 'true'){
+            data[i].poster = omdbData.Poster
+            data[i].genre = omdbData.Genre
+        }
+    }
+    return data;
+}
 
 //end of moviePoster request
 
