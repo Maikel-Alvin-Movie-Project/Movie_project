@@ -25,18 +25,9 @@
 <div class="container">
 
     <!--NavBar-->
-    <nav class="navbar navbar-expand-lg rounded mb-2" style="background-color: #193153">
+    <nav class="navbar navbar-expand-lg rounded mb-2 fixed-top" style="background-color: #193153">
         <img src="/css/PopCorn.png" alt="Logo" width="40" class="d-inline-block align-text-top ms-3 rounded">
-        <a class="navbar-brand ms-3 fs-3" style="color: white" href="#"><strong>ANC Tubs</strong></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-        </button>
-<!--        <div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-<!--            <ul class="navbar-nav ms-auto">-->
-<!--                <li class="nav-item"><button class="btn nav-link rounded px-lg-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">-->
-<!--                        Edit Movie List</button></li>-->
-<!--            </ul>-->
-<!--        </div>-->
+        <a class="navbar-brand ms-3 fs-3 d-none d-sm-block" style="color: white" href="#"><strong>ANC Tubs</strong></a>
         <form class="d-flex ms-auto me-3" role="search">
             <input id="searchBox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button id="searchBtn" class="btn btn-outline-light" type="submit">Search</button>
@@ -44,7 +35,7 @@
     </nav>
 
     <div class="row">
-        <div class="column1 col-lg-3" >
+        <div class="column1 col-lg-3 mt-5 pt-2 position-sticky" >
             <!--Add Movie form -->
             <h3 class="addMovieTitle">Add Movie</h3>
             <form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
@@ -79,7 +70,7 @@
         </div>
 <!--        <div    class=" fillerCol col-lg-1">-->
 <!--        </div>-->
-        <div class="column2 col-lg-9">
+        <div class="column2 col-lg-9 mt-lg-5 pt-lg-2">
             <h3 class="movieListTitle">Movie List</h3>
             <!--    Sort-->
             <select id="sortArea" class="rounded mb-2">
