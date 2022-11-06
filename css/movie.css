@@ -110,3 +110,23 @@ body {
 .htmlCard:hover img {
     transform: scale(1.1);
 }
+
+.column1 {
+    overflow-y:visible;
+}
+
+
+@media(min-width:1024px){
+h3, form {
+    padding: 5px 20px;
+}
+
+.column1:first-child {
+    position: fixed;
+    left: 5px
+}
+
+.column2 {
+    margin-left: 280px;
+}
+}
