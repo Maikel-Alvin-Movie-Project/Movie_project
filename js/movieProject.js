@@ -89,7 +89,7 @@ function displayMovies(data){
         let mainContainer = document.getElementById("movie");
         $("#movie").empty()
         for (let i = 0; i < data.length; i++){
-            let poster = data[i].poster ? data[i].poster: "css/leo.png"
+            let poster = data[i].poster ? data[i].poster: "css/PopCorn.png"
 
             let html = '';
             html += `<div class="card htmlCard col-lg-4 p-0 my-2" id=${data[i].id}>
