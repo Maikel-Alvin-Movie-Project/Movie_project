@@ -58,7 +58,7 @@ $('#searchBox').on("input", (e) => {
     let searchItem = e.target.value;
     if (searchItem.length > 0){
     movies = movies.filter(item =>
-        item.title.toLowerCase().includes(searchItem.toLowerCase()))
+        item.title.toLowerCase().includes(searchItem.toLowerCase()) || item.genre.toLowerCase().includes(searchItem.toLowerCase()))
     displayMovies(movies)
     } else {
         movies = allMovies;
