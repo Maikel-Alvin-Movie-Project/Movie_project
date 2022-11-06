@@ -124,11 +124,9 @@ mySelect.addEventListener('change', (e) => {
     const selectedMovie = movies.find(movie => movie.id == id)
     const sameId = document.getElementById('movieId')
     const myNewTitle = document.getElementById('movieTitleEdit')
-    const addGenre = document.getElementById('movieGenreEdit')
     sameId.value = (selectedMovie.id)
     myNewTitle.value = (selectedMovie.title)
     $('#movieRatingEdit').val(selectedMovie.rating);
-    addGenre.value = (selectedMovie.genre ? selectedMovie.genre : '')
     let myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
         keyboard: false
     })
@@ -162,8 +160,7 @@ patch.addEventListener('click', function (e) {
     let movieEditRating = document.querySelector('#movieRatingEdit').value
     let movieEditTitle = document.querySelector('#movieTitleEdit').value
     let movieEditId = document.querySelector('#movieId').value
-    let movieGenre = document.querySelector('#movieGenreEdit').value
-    moviePatch(movieEditId, movieEditTitle, movieEditRating, movieGenre)
+    moviePatch(movieEditId, movieEditTitle, movieEditRating)
     setTimeout(function () {
         getMovies()
     }, 1000)
