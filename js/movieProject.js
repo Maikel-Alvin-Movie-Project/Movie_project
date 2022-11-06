@@ -236,7 +236,6 @@ function moviePatch(id, title, rating, genre) {
         .then((json) => console.log(json));
 }
 //Patch & edit Movie Method
-
 //start of moviePoster request
 
 function omdbInfo(title) {
