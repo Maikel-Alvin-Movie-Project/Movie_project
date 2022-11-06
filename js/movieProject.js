@@ -113,8 +113,6 @@ function postMovie(title, rating) {
         },
     })
         .then((response) => response.json())
-        .then((json) => {
-        })
 }
 
 //modal
