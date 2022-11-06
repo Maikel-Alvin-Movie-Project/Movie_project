@@ -134,25 +134,25 @@ z.addEventListener('click', function (e){
     const movieR = $('#movieRating').find(":selected").val();
     // let movieR = document.querySelector('#movieRating').value
     let movieT = document.querySelector('#movieTitle').value
-    let movieG = document.querySelector('#movieGenre').value
-    postMovie(movieT, movieR, movieG)
+    // let movieG = document.querySelector('#movieGenre').value
+    postMovie(movieT, movieR)
     document.querySelector("#form").reset()
     setTimeout(function (){
         getMovies()
-    }, 1000)
+    }, 1500)
 
     console.log(e);
 });
 
 // Post Method
-function postMovie(title, rating, genre) {
+function postMovie(title, rating) {
     // console.log(t);
     fetch('https://silk-admitted-crow.glitch.me/movies/', {
     method: 'POST',
     body: JSON.stringify({
         title,
-        rating: parseInt(rating),
-        genre,
+        rating: parseInt(rating)
+        // genre,
     }),
     headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -186,7 +186,6 @@ mySelect.addEventListener('change', (e) =>{
 
 // Start Edit & Patch Method
 //Edit function
-
 function editMovieList(data){
     let select = document.getElementById("movieEdit")
     $("#movieEdit").empty();
@@ -201,9 +200,9 @@ function editMovieList(data){
         select.appendChild(currentOption)
     }
 }
+//End of Edit function
 
 //Patch Function
-
 let patch = document.getElementById('changes')
 console.log(patch);
 patch.addEventListener('click', function (e){
@@ -236,8 +235,8 @@ function moviePatch(id, title, rating, genre) {
         .then((json) => console.log(json));
 }
 //Patch & edit Movie Method
-//start of moviePoster request
 
+//start of moviePoster request
 function omdbInfo(title) {
     return new Promise((resolve, reject) => {
 
@@ -259,7 +258,6 @@ async function addMoviePoster(data) {
     }
     return data;
 }
-
 //end of moviePoster request
 
 
