@@ -60,12 +60,21 @@ body {
     justify-content: center;
 }
 
-.column1{
+.row{
+    display: flex;
+    overflow: auto;
 }
 
-/*.column2 {*/
-/*    border-left: 3px solid lightgrey;*/
-/*}*/
+.column1{
+/*position: sticky;*/
+/*    top: 0;*/
+/*    align-self: flex-start;*/
+}
+
+.column2 {
+    /*border-left: 3px solid lightgrey;*/
+    /*align-content: end;*/
+}
 
 .addMovieTitle {
     margin-top: 1em;
