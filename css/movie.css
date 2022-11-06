@@ -1,13 +1,6 @@
 body {
     background-color: #eee;
 }
-/*.content {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    width:100%;*/
-/*    height:100%;*/
-/*}*/
 
 /* Load Screen */
 
@@ -18,10 +11,11 @@ body {
     top: 0;
     left: 0;
     background-color: #242f3f;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .loader {
     display: inline-block;
     width: 30px;
@@ -30,6 +24,7 @@ body {
     border: 4px solid #Fff;
     animation: loader 3s infinite ease;
 }
+
 .loader-inner {
     vertical-align: top;
     display: inline-block;
@@ -39,41 +34,51 @@ body {
 }
 
 @keyframes loader {
-    0% { transform: rotate(0deg);}
-    25% { transform: rotate(180deg);}
-    50% { transform: rotate(180deg);}
-    75% { transform: rotate(360deg);}
-    100% { transform: rotate(360deg);}
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(180deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes loader-inner {
-    0% { height: 0%;}
-    25% { height: 0%;}
-    50% { height: 100%;}
-    75% { height: 100%;}
-    100% { height: 0%;}
+    0% {
+        height: 0%;
+    }
+    25% {
+        height: 0%;
+    }
+    50% {
+        height: 100%;
+    }
+    75% {
+        height: 100%;
+    }
+    100% {
+        height: 0%;
+    }
 }
+
 /*Load Screen ends */
 
-.htmlCard{
+.htmlCard {
     display: flex;
     justify-content: center;
 }
 
-.row{
+.row {
     display: flex;
     overflow: auto;
-}
-
-.column1{
-/*position: sticky;*/
-/*    top: 0;*/
-/*    align-self: flex-start;*/
-}
-
-.column2 {
-    /*border-left: 3px solid lightgrey;*/
-    /*align-content: end;*/
 }
 
 .addMovieTitle {
@@ -88,13 +93,19 @@ body {
     border-bottom: 2px solid red;
 }
 
+.sortMoviesTitle {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid red;
+}
+
 .movieListTitle {
     margin-top: 1em;
     margin-bottom: 0.5em;
     border-bottom: 2px solid red;
 }
 
-.dlt-button{
+.dlt-button {
     color: white;
     background-color: #0d6efd;
 }
@@ -112,21 +123,21 @@ body {
 }
 
 .column1 {
-    overflow-y:visible;
+    overflow-y: visible;
 }
 
 
-@media(min-width:1024px){
-h3, form {
-    padding: 5px 20px;
-}
+@media (min-width: 1024px) {
+    h3, form {
+        padding: 5px 20px;
+    }
 
-.column1:first-child {
-    position: fixed;
-    left: 5px
-}
+    .column1:first-child {
+        position: fixed;
+        left: 5px
+    }
 
-.column2 {
-    margin-left: 280px;
-}
+    .column2 {
+        margin-left: 280px;
+    }
 }

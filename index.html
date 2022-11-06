@@ -11,8 +11,6 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- custom css styles -->
     <link rel="stylesheet" href="css/movie.css">
-    <!--    Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -35,15 +33,14 @@
     </nav>
 
     <div class="row">
-        <div class="column1 col-lg-3 mt-5 pt-2" >
+        <div class="column1 col-lg-3 mt-5 pt-2">
             <!--Add Movie form -->
             <h3 class="addMovieTitle">Add Movie</h3>
             <form id="form" onsubmit="formSubmit(formTitle.value, formRating.value)">
                 <div class="mb-3">
                     <label class="form-label">Movie Title</label>
                     <input type="text" class="form-control" id="movieTitle" name="formTitle">
-                    <label class="form-label">Rating</label>
-<!--                    <input type="text" class="form-control" id="movieRating" name="formRating">-->
+                    <label class="form-label mt-2">Rating</label>
                     <select id="movieRating" name="formRating" class="form-select">
                         <option disabled selected value>Select Rating</option>
                         <option>1</option>
@@ -52,13 +49,11 @@
                         <option>4</option>
                         <option>5</option>
                     </select>
-<!--                    <label class="form-label">Genre</label>-->
-<!--                    <input type="text" class="form-control" id="movieGenre" name="formGenre">-->
                 </div>
                 <input type="button" class="btn btn-primary" id="submitForm" value="Submit"></input>
             </form>
             <!--Add Movie form ends -->
-<!--            Edit movie -->
+            <!--            Edit movie -->
             <h3 class="selectMovieTitle">Edit Movie</h3>
             <form>
                 <div>
@@ -67,19 +62,18 @@
                 </div>
             </form>
             <!--Edit movie ends-->
-        </div>
-<!--        <div    class=" fillerCol col-lg-1">-->
-<!--        </div>-->
-        <div class="column2 col-lg-9 mt-lg-5 pt-lg-2">
-            <h3 class="movieListTitle">Movie List</h3>
             <!--    Sort-->
-            <select id="sortArea" class="rounded mb-2">
-                <option disabled selected>Click to Sort</option>
+            <h3 class="sortMoviesTitle">Sort Movies</h3>
+            <select id="sortArea" class="form-select">
+                <option disabled selected value>Click to Sort</option>
                 <option value="title">Sort By: Title</option>
                 <option value="rating">Sort By: Rating</option>
                 <option value="rating">Sort By: Genre</option>
             </select>
-            <!--    Sort-->
+            <!--    Sort ends-->
+        </div>
+        <div class="column2 col-lg-9 mt-lg-5 pt-lg-2">
+            <h3 class="movieListTitle">Movie List</h3>
             <!-- Movie list -->
             <div id="movie" class="row"></div>
             <!--Movie list ends-->
@@ -104,7 +98,6 @@
                         <label class="form-label">Movie Title</label>
                         <input type="text" class="form-control" id="movieTitleEdit" name="formTitle">
                         <label class="form-label">Rating</label>
-<!--                        <input type="text" class="form-control" id="movieRatingEdit" name="formRating">-->
                         <select id="movieRatingEdit" name="formRating" class="form-select">
                             <option disabled selected value>Select Rating</option>
                             <option value="1">1</option>
@@ -120,41 +113,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="changes" data-bs-dismiss="modal">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="changes" data-bs-dismiss="modal">Save changes
+                    </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <!--  Modal ends-->
-
-<!--&lt;!&ndash;Side bar &ndash;&gt;-->
-<!--<div class="offcanvas offcanvas-start bg-dark text-light row" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">-->
-<!--    &lt;!&ndash;            Date and Time &ndash;&gt;-->
-<!--    <div class="offcanvas-header d-flex justify-content-center text-center">-->
-<!--        <div class="date-container">-->
-<!--            <div class="time" id="time">-->
-<!--                12:30 <span id="am-pm">PM</span>-->
-<!--            </div>-->
-<!--            <div class="date" id="date">-->
-<!--                Monday, 24 May-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="offcanvas-body">-->
-<!--        &lt;!&ndash;            Edit movie &ndash;&gt;-->
-<!--        <h3 class="selectMovieTitle">Select Movie to Edit</h3>-->
-<!--        <form>-->
-<!--            <div>-->
-<!--                <select id="movieEdit" class="form-select">-->
-<!--                    <option>Select Title</option>-->
-<!--                </select>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--        &lt;!&ndash;Edit movie ends&ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash;Sie bar ends&ndash;&gt;-->
 
 <!-- Bootstrap link -->
 <!-- JavaScript Bundle with Popper -->
@@ -170,7 +136,3 @@
 <script src="js/movieProject.js"></script>
 </body>
 </html>
-
-<!-- To-do:
-- Split page into 2 columns
--->
