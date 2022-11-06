@@ -179,13 +179,11 @@ function moviePatch(id, title, rating, genre) {
         .then((response) => response.json())
         .then((json) => console.log(json));
 }
-
 //Patch & edit Movie Method
 
 //start of moviePoster request
 function omdbInfo(title) {
     return new Promise((resolve, reject) => {
-
 
         fetch('https://omdbapi.com/?apikey=33246cb9&t=' + title, {
             method: 'GET',
